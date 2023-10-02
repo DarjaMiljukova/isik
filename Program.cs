@@ -60,30 +60,37 @@ namespace isik
         }
         public static void Main()
         {
-            Console.WriteLine("Hei, kirjutage sinu isikukood: \n");
-            string kod = Console.ReadLine();
-            Console.WriteLine(" ");
-            IdCode idCode = new IdCode(kod);
+            while (true)
+            {
+                Console.WriteLine("Väljapääsemiseks kirjutage (välja) ");
+                Console.WriteLine("Hei, kirjutage sinu isikukood: \n");
+                string kod = Console.ReadLine();
+                Console.WriteLine(" ");
 
-            if (idCode.IsValid())
-            {
-                Console.WriteLine($"Sünniaasta: {idCode.GetFullYear()}");
-                Console.WriteLine($"Sünnikuupäev: {idCode.GetBirthDate():dd.MM.yyyy}");
-                Console.WriteLine($"Sugu: {idCode.GetGender()} ");
-                Console.WriteLine($"Haiglasse: {idCode.GetHospital()} \n");
-                ChangeConsoleColor(ConsoleColor.Green);
-                Console.WriteLine("Isikukood on õige.");
-                Console.ResetColor();
-            }
-            else
-            {
-                ChangeConsoleColor(ConsoleColor.Red);
-                Console.WriteLine("Isikukood on vale.");
-                Console.ResetColor();
+                if (kod.ToLower() == "välja")
+                {
+                    break; // Завершаем программу, если пользователь ввел "exit"
+                }
+
+                IdCode idCode = new IdCode(kod);
+
+                if (idCode.IsValid())
+                {
+                    Console.WriteLine($"Sünniaasta: {idCode.GetFullYear()}");
+                    Console.WriteLine($"Sünnikuupäev: {idCode.GetBirthDate():dd.MM.yyyy}");
+                    Console.WriteLine($"Sugu: {idCode.GetGender()} ");
+                    Console.WriteLine($"Haiglasse: {idCode.GetHospital()} \n");
+                    ChangeConsoleColor(ConsoleColor.Green);
+                    Console.WriteLine("Isikukood on õige.");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    ChangeConsoleColor(ConsoleColor.Red);
+                    Console.WriteLine("Isikukood on vale.");
+                    Console.ResetColor();
+                }
             }
         }
     }
-
-
 }
-
